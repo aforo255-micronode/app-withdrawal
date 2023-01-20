@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment-withdrawal
+  labels:
+    app: service-withdrawal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-withdrawal
+  template:
+    metadata:
+      labels:
+        app: service-withdrawal
+    spec:
+      containers:
+      - name: app-withdrawal
+        image: jeanflores2c93/aforo255-nodejs-withdrawal:latest
+        ports:
+        - containerPort: 5004
+        env:
+        - name: NACOS_SERVERADDR
+          value: "161.35.233.217:8848"
+        - name: NACOS_NAMESPACE
+          value: "aforo255"
+        - name: NACOS_IDENTITYKEY
+          value: "nacos"
+        - name: NACOS_IDENTITYVALUE
+          value: "nacos"
+        - name: NACOS_ENV
+          value: "PROD"

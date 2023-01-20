@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: app-service-withdrawal
+spec:
+  type: LoadBalancer
+  selector:
+    app: service-withdrawal
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5004
+    name: http
